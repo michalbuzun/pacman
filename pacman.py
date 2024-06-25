@@ -4,9 +4,9 @@ import pygame
 class Pacman(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
+        self.image = pygame.Surface([30, 30])
+        # self.image.fill("green")
+        self.rect = self.image.get_rect()
+        self.rect.bottomleft = (200, 200)
 
-    def update(self):
-        self._player_input()
-        self._player_movement()
-        self._render_player()
-        self._check_for_next_level()
+    def update(self): ...

@@ -46,7 +46,11 @@ while True:
                     game_active = True
 
     if game_active:
-        ...
+        pacman_group.draw(screen)
+        pacman_group.update()
+
+        obstacle_group.draw(screen)
+        obstacle_group.update()
 
     else:
         ...

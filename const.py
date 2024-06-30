@@ -1,7 +1,7 @@
 WIDTH = 800
 HEIGHT = 450
 
-WALLS = [
+POSSIBLE_MOVES = [
     # LEFT WALL
     (0, 0),
     (0, 50),

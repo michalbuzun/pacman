@@ -1,6 +1,6 @@
 import pygame
 from sys import exit
-from const import WIDTH, HEIGHT, WALLS
+from const import WIDTH, HEIGHT, POSSIBLE_MOVES
 from pacman import Pacman
 from obstacle import Obstacle
 
@@ -28,8 +28,8 @@ SQUARE_SIZE = 50
 while True:
     screen.fill("black")
 
-    for wall in WALLS:
-        position_rect = pygame.Rect(wall[0], wall[1], SQUARE_SIZE, SQUARE_SIZE)
+    for move in POSSIBLE_MOVES:
+        position_rect = pygame.Rect(move[0], move[1], SQUARE_SIZE, SQUARE_SIZE)
         pygame.draw.rect(screen, "grey", position_rect)
 
     for event in pygame.event.get():

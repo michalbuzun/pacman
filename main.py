@@ -18,9 +18,13 @@ pacman = Pacman()
 pacman_group = pygame.sprite.GroupSingle()
 pacman_group.add(pacman)
 
-obstacle = Obstacle()
+obstacle = Obstacle(color="red")
+obstacle2 = Obstacle(color="green")
+obstacle3 = Obstacle(color="blue")
 obstacle_group = pygame.sprite.Group()
 obstacle_group.add(obstacle)
+obstacle_group.add(obstacle2)
+obstacle_group.add(obstacle3)
 
 SQUARE_SIZE = 50
 

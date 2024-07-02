@@ -5,6 +5,9 @@ from enum import Enum, auto
 from collections import namedtuple
 
 
+TIME_DELAY_IN_MILLISECONDS = 600
+
+
 class Direction(Enum):
     LEFT = auto()
     RIGHT = auto()
@@ -22,17 +25,16 @@ Position = namedtuple(
 
 
 class Obstacle(pygame.sprite.Sprite):
-    def __init__(
-        self,
-    ):
+    def __init__(self, color):
         super().__init__()
 
         self.image = pygame.Surface([50, 50])
-        self.image.fill("red")
+        self.image.fill(color)
         self.rect = self.image.get_rect()
         self.rect.topleft = POSSIBLE_MOVES[63]
-        # self.rect.topleft = (100, 350)
         self.direction = Direction.RIGHT
+        self.is_move_possible = True
+        self.time_with_delay = 0
 
     def _move(self):
         if self.direction == Direction.RIGHT:
@@ -211,8 +213,17 @@ class Obstacle(pygame.sprite.Sprite):
     def _is_in_possible_moves(self, position):
         return position in POSSIBLE_MOVES
 
-    def update(self):
-        self._move()
+    def _block_movement(self):
+        time_now = pygame.time.get_ticks()
+        if time_now > self.time_with_delay:
+            delay = TIME_DELAY_IN_MILLISECONDS
+            self.time_with_delay = time_now + delay
+            self.is_move_possible = True
+        else:
+            self.is_move_possible = False
 
-        # position = random.randint(0, len(WALLS) - 1)
-        # self.rect.topleft = WALLS[position]
+    def update(self):
+        # here add some code that will slow down sprite update
+        self._block_movement()
+        if self.is_move_possible:
+            self._move()
